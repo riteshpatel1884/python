@@ -1,0 +1,193 @@
+https://chatgpt.com/c/6aba0228-76ac-83ee-af62-3d30c61f5e74
+
+1. What is Python?
+
+-> Python is a high-level, interpreted and dynamically typed programming language. 
+-> It supports multiple programming paradigms, including procedural, object-oriented and functional programming.
+-> For AI/ML, Python is popular because of its ecosystem: NumPy, Pandas, Scikit-learn, PyTorch, TensorFlow, Transformers, FastAPI, etc.
+-> Python is interpreted, but technically Python source code is first compiled into bytecode, which is then executed by the Python virtual machine.
+
+
+
+2. What does dynamically typed mean? 
+Dynamically typed means that the language determines a variable's data type at runtime (while the program is running) rather than requiring you to explicitly declare it beforehand
+Ex: 
+x = 10
+x = "hello"
+
+
+
+3. What is strong typing in Python?
+Strong typing in Python means that the language enforces strict type rules and does not automatically convert values from one incompatible data type to another.
+Ex:  "10" + 5 raises TypeError
+
+
+
+4. What are Python's built-in data types?
+int
+float
+complex
+bool
+str
+list
+tuple
+set
+dict
+NoneType
+
+
+
+5. Mutable vs immutable?
+-> Mutable objects can be modified or updated directly without changing their identity (memory address).
+-> list, dict, set
+-> Immutable objects cannot be altered. Any operation that tries to modify an immutable object will instead create a brand-new object in memory with a different identity.
+-> int, float, bool, str, tuple
+
+
+
+6. Why are strings immutable?
+-> Strings are immutable (unchangeable after creation) primarily for performance efficiency, memory optimization, and data safety
+-> In Python, only immutable objects can be hashed. Python computes and caches its hash value the very first time it is calculated. Subsequent dictionary lookups using that string happen incredibly fast because Python doesn't need to re-evaluate the whole string character-by-character
+-> In multi-threaded applications, multiple parts of a program might read the same string at the same time. Because strings cannot be modified in-place, there is no risk of one thread altering the data while another thread is trying to read it. 
+
+
+
+7. Difference between == and is?
+-> == Compares the contents or values of two objects.
+-> Use this when you want to know if two objects contain the same data.
+-> is Compares the exact memory locations of two objects.
+
+
+
+8. What is None?
+-> None represents the absence of a value.
+-> type(None) = NoneType.
+
+
+
+9. What are truthy and falsy values?
+-> By default, an object is considered falsy if it represents an empty container, a zero value or a state of absence.
+-> Falsy = False, None, 0, 0.0, "", [], {}, (), set()
+-> Rest are truthy
+-> A value is truthy if it is not explicitly defined as falsy. If it has content, size or a non-zero value, Python treats it as True.
+
+
+
+10. Can a list be a dictionary key?
+-> No. Because dictionary keys must be hashable, and lists are mutable.
+d = {
+    [1, 2]: "hello"
+}
+
+
+
+11. Can tuples be dictionary keys?
+-> Yes, provided all their elements are hashable.
+-> d = {(1, 2): "hello"} works.
+-> But: d = {(1, [2, 3]): "hello"} doesn't.
+
+
+
+12. What happens if you insert the same dictionary key twice?
+d = {
+    "a": 1,
+    "a": 2
+}
+
+Result: {'a': 2}
+The later value replaces the earlier one.
+
+
+
+13. Difference between assignment and copying?
+-> Assignment creates a new reference to the existing object
+-> Copying creates an entirely new object in memory. b = a.copy()
+
+
+
+14. What is deep copy?
+-> A deep copy creates a completely independent copy of the object, including its nested objects.
+-> In Python, you can create one using copy.deepcopy().
+
+import copy
+original = [[1, 2], [3, 4]]
+deep = copy.deepcopy(original)
+
+deep[0][0] = 99
+
+print(original)  # [[1, 2], [3, 4]]
+print(deep)      # [[99, 2], [3, 4]]
+Here, modifying the nested list in deep doesn't affect original.
+
+
+
+15. What is shallow copy?
+-> A shallow copy creates a new object, but nested objects are still shared between the original and the copy.
+-> In Python, you can create one using copy.copy().
+
+import copy
+original = [[1, 2], [3, 4]]
+shallow = copy.copy(original)
+
+shallow[0][0] = 99
+
+print(original)  # [[99, 2], [3, 4]]
+print(shallow)   # [[99, 2], [3, 4]]
+The outer list is copied, but the inner lists are references to the same objects.
+
+
+
+16. Input / Output Based Question
+(A)
+a = [[1, 2], [3, 4]]
+b = a.copy()
+
+b[0].append(5)
+print(a)
+
+Answer: [[1, 2, 5], [3, 4]]
+Because the nested list is shared.
+
+
+(B)
+x = 10
+def change():
+    x = 20
+
+change()
+print(x)
+
+Output: 10
+The function creates a local x.
+
+
+(C)
+x = 10
+
+def change():
+    global x
+    x = 20
+
+change()
+print(x)
+
+Output: 20
+
+Initially: x = 10 means x is a global variable because it's defined outside the function.
+When I use x inside this function, I mean the global x, not a new local variable.
+
+
+(D)
+x = [1, 2]
+
+def change(x):
+    x.append(3)
+
+change(x)
+print(x)
+
+Output: [1, 2, 3]
+
+
+
+(E)
