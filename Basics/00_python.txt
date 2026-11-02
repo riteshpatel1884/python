@@ -1,11 +1,3 @@
-https://chatgpt.com/c/6aba0228-76ac-83ee-af62-3d30c61f5e74
-
-1. What is Python?
-
--> Python is a high-level, interpreted and dynamically typed programming language. 
--> It supports multiple programming paradigms, including procedural, object-oriented and functional programming.
--> For AI/ML, Python is popular because of its ecosystem: NumPy, Pandas, Scikit-learn, PyTorch, TensorFlow, Transformers, FastAPI, etc.
--> Python is interpreted, but technically Python source code is first compiled into bytecode, which is then executed by the Python virtual machine.
 
 
 
